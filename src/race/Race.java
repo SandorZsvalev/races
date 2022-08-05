@@ -16,13 +16,8 @@ public class Race {
     private boolean raceIsOn = true;
     private final Raceable NOT_DEFINED = null;
 
-    private class Comp implements Comparator <Raceable> {
-        @Override
-        public int compare(Raceable o1, Raceable o2) {
-            return -1*(o1.getDistance() - o2.getDistance());
-        }
-    }
-    Comp comp = new Comp();
+
+    Comparator <Raceable> comp = (o1, o2) -> -1*(o1.getDistance() - o2.getDistance());
 
 
     public Race(List<Raceable> runners) {

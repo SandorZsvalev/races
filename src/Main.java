@@ -1,28 +1,29 @@
 import participants.*;
-import race.Race;
-import race.Raceable;
+import race.Participant;
+import race.RaceInThreads;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        Raceable one = new AndalusianHorse("One",16,7);
-        Raceable two = new AkhaltekeHorse("Two",17,10);
-        Raceable three = new ArabianHorse("Three",13,3);
-        Raceable four = new AndalusianHorse("Four",10,2);
-        Raceable five = new AkhaltekeHorse("Five",20,5);
-        Raceable six = new ArabianHorse("Six",18,12);
-        Raceable seven = new RussianCat("Seven",10,3);
-        Raceable eight = new PersianCat("Eight",12,14);
-        Raceable nine = new BritishCat("Nine",8,3);
-        Raceable ten = new RussianCat("Ten",12,9);
-        Raceable eleven = new PersianCat("Eleven",5,8);
-        Raceable twelve = new BritishCat("Twelve",11,2);
+        Participant one = new AndalusianHorse("One",16,7);
+        Participant two = new AkhaltekeHorse("Two",17,10);
+        Participant three = new ArabianHorse("Three",13,3);
+        Participant four = new AndalusianHorse("Four",10,2);
+        Participant five = new AkhaltekeHorse("Five",20,5);
+        Participant six = new ArabianHorse("Six",18,12);
+        Participant seven = new RussianCat("Seven",10,3);
+        Participant eight = new PersianCat("Eight",12,14);
+        Participant nine = new BritishCat("Nine",8,3);
+        Participant ten = new RussianCat("Ten",12,9);
+        Participant eleven = new PersianCat("Eleven",5,8);
+        Participant twelve = new BritishCat("Twelve",11,2);
 
 
-        List <Raceable> runners = new ArrayList<>();
+//        List <Raceable> runners = new ArrayList<>();
+        List <Participant> runners = new ArrayList<>();
         runners.add(one);
         runners.add(two);
         runners.add(three);
@@ -36,13 +37,20 @@ public class Main {
         runners.add(eleven);
         runners.add(twelve);
 
-        Race race = new Race(runners);
+//        Race race = new Race(runners);
+//        race.runAll();
 
-        race.run();
+        RaceInThreads raceInThreads = new RaceInThreads(runners);
+        for (Participant runner : runners) {
+            new Thread(runner).start();
+        }
 
 
+
+        Thread.sleep(1000);
+        System.out.println("end of race");
+        raceInThreads.rating();
     }
-
 
 
 }

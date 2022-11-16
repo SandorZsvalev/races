@@ -1,8 +1,8 @@
 package race;
 
-public interface Raceable {
+public interface Raceable  {
 
-    int makeTurn(int speed, int age);
+//    int makeTurn(int speed, int age);
 
     void setStartPosition(int startPosition);
 
@@ -21,7 +21,5 @@ public interface Raceable {
     int getDistance();
 
     String getName();
-
-
 
 }
